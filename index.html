@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <title>A Website!</title>
+
+        <!-- Vendor Styles -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Application Styles -->
+        <link rel="stylesheet" href="./index.css">
+    </head>
+
+    <body>
+        <center class="container calculator">
+            <h3>Calculator</h3>
+            <!-- The calculator buttons -->
+            <div class="container calculator-buttons">
+                <div class="row">
+                    <div class="calculator-display">
+                        <span id="calculator-display">0</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button id="calc-button-set-memory" type="button" class="btn btn-outline-dark" onClick="setMemory()">M+</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-recall-memory" type="button" class="btn btn-outline-dark" onClick="recallMemory()">M</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-clear" type="button" class="btn btn-outline-dark">C</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-divide" type="button" class="btn btn-outline-dark">&#247;</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button id="calc-button-7" type="button" class="btn btn-outline-dark">7</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-8" type="button" class="btn btn-outline-dark">8</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-9" type="button" class="btn btn-outline-dark">9</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-multiply" type="button" class="btn btn-outline-dark">x</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button id="calc-button-4" type="button" class="btn btn-outline-dark">4</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-5" type="button" class="btn btn-outline-dark">5</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-6" type="button" class="btn btn-outline-dark">6</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-subtract" type="button" class="btn btn-outline-dark">-</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button id="calc-button-1" type="button" class="btn btn-outline-dark">1</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-2" type="button" class="btn btn-outline-dark">2</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-3" type="button" class="btn btn-outline-dark">3</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-add" type="button" class="btn btn-outline-dark">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <button id="calc-button-plusMinus" type="button" class="btn btn-outline-dark">&#xb1;</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-0" type="button" class="btn btn-outline-dark">0</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-." type="button" class="btn btn-outline-dark">.</button>
+                    </div>
+                    <div class="col-sm">
+                        <button id="calc-button-equals" type="button" class="btn btn-outline-dark" onClick="test()">=</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+        <!-- Resources -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <!-- App Scripts -->
+        <script type="text/javascript" src="./index.js"></script>
+    </body>
+</html>

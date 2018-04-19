@@ -1,0 +1,28 @@
+/* Main application style page */
+.calculator {
+    border: 1px black solid;
+    width: 350px;
+}
+.calculator h3 {
+    margin-top: 8px;
+}
+.calculator div.col-sm {
+    margin: 5px;
+    padding: 0px;
+}
+.calculator-display {
+    background-color: #DCDCDC;
+    font-size: 24px;
+    padding: 8px;
+    margin: 0px 14px 6px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+.calculator-buttons {
+    margin: 8px 0px;
+}
+.calculator-buttons button {
+    width: 50px;
+}
