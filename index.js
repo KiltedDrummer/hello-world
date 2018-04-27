@@ -8,6 +8,8 @@ let currentFunction = [0];
 let lastElement = currentFunction[currentFunction.length - 1];
 let currentNumber = Number(currentFunction[lastElement].toString());
 
+let currentDisplay = calculatorDisplay.innerHTML;
+
 /**
  * Set the value of what is displayed on the calculator.
  */
@@ -16,14 +18,14 @@ function setCalculatorDisplay (val) {
 }
 
 function updateCalculatorDisplay (val) {
-    let currentDisplay = calculatorDisplay.innerHTML;
+    currentDisplay = calculatorDisplay.innerHTML;
 
     if (calculatorDisplay.innerHTML == 0) {
         setCalculatorDisplay (val);
     } else if (!isNaN(calculatorDisplay.innerHTML)) {
         setCalculatorDisplay ('' + currentDisplay + val);
     }
-
+    currentDisplay = calculatorDisplay.innerHTML;
 
 }
 
@@ -58,8 +60,8 @@ function clearDisplay () {
     setCalculatorDisplay (currentFunction[0]);
 }
 
-function numberSeven () {
-    updateCalculatorDisplay (7);
+function pressNumber (num) {
+    updateCalculatorDisplay (num);
 }
 
 
@@ -69,9 +71,10 @@ function numberSeven () {
  */
 function callOperator(button) {
     if (lastElement === 0) {
-        lastElement = currentDisplay;
-    } else {
-        currentFunction.push(button);
-        setCalculatorDisplay (0);
+        currentFunction.splice(currentFunction.length - 1, 1, currentDisplay);
     }
+        currentFunction.push(button);
+        currentFunction.push(0);
+        setCalculatorDisplay (0);
+    
 }
