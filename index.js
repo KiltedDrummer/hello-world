@@ -68,6 +68,10 @@ function clearDisplay () {
 }
 
 function pressNumber (num) {
+    if (lastHit === '=') {
+        setCalculatorDisplay(0);
+        currentFunction =[];
+    }
     updateCalculatorDisplay (num);
     lastHit = num;
 }
