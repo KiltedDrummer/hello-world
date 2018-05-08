@@ -52,11 +52,13 @@ function recallMemory () {
     calculatorDisplay.innerHTML = memory;
 }
 
-
-function test () {
-    var x = Math.round(Math.random() * 100000) / 100;
-    console.log(x);
-    setCalculatorDisplay(x);
+// changes number from positive to negative or back
+function posNeg () {
+    currentDisplay = currentDisplay * (-1);
+    setCalculatorDisplay(currentDisplay);
+    if (currentFunction.length === 1) {
+        currentFunction[0] = currentDisplay;
+    }
 }
 
 function clearDisplay () {
