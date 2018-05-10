@@ -27,10 +27,11 @@ function setCalculatorDisplay (val) {
 function updateCalculatorDisplay (val) {
     currentDisplay = calculatorDisplay.innerHTML;
 
-    if (calculatorDisplay.innerHTML == 0) {
+    if (calculatorDisplay.innerHTML == 0 && lastHit !== '.') {
         setCalculatorDisplay (val);
-    } else if (!isNaN(calculatorDisplay.innerHTML)) {
+    } else if (!isNaN(calculatorDisplay.innerHTML) || lastHit === '.') {
         setCalculatorDisplay ('' + currentDisplay + val);
+        console.log('did i make it?');
     }
     currentDisplay = calculatorDisplay.innerHTML;
 
@@ -66,6 +67,7 @@ function posNeg () {
 
 function clearDisplay () {
     currentFunction = [];
+    lastElement = currentFunction[0];
     setCalculatorDisplay (0);
     lastHit = undefined;
 }
@@ -86,13 +88,23 @@ function pressNumber (num) {
 }
 
 function decimal (dot) {
-    if (!isNaN(currentDisplay && !isNaN(lastHit))) {
+    if (!isNaN(currentDisplay) && !isNaN(lastHit)) { // if display and lastHit are both numbers
         setCalculatorDisplay('' + currentDisplay + dot);
-    } else  {
-        setCalculatorDisplay(0.);
+        console.log('case 1');
+    } else if (lastHit === '.') {               // lastHit was another decimal
+        setCalculatorDisplay(currentDisplay);
+        console.log('case 2');
+    } else if (isNaN(lastHit) && lastHit != '.' && lastHit !== undefined) {  // last hit was an operator
+        setCalculatorDisplay('' + 0 + dot);
+        console.log('case 3');
+    } else if (lastHit === '=' || lastHit == undefined) {           //lastHit was '='
+        setCalculatorDisplay('' + currentDisplay + dot);
         currentFunction = [];
         lastElement = currentFunction[0];
+        console.log('case 4');
     }
+
+    lastHit = dot;
 }
 
 function solveIt() {
@@ -121,6 +133,11 @@ function solveIt() {
  */
 function callOperator(button) {
 
+    if (lastHit === '.') {
+        pressNumber(0);
+        callOperator(button);
+    }
+
     if (button === '=') {    // if '=' is hit
         if (lastHit === '=') {   // is '=' is hit a second time in a row, repeat last function
             if (currentFunction.length > 0) {
@@ -128,15 +145,19 @@ function callOperator(button) {
                 currentFunction = [solution];
                 setCalculatorDisplay(solution);
             } else {
+                currentFunction.push(currentDisplay);
                 setCalculatorDisplay(currentFunction[0]);
             }
         } else if (!isNaN(lastHit)) {    // if lastHit is a number
             currentFunction.push(currentDisplay);
             solveIt();
-            currentFunction = [solution];
-
-            setCalculatorDisplay(solution);
-        } else if (isNaN(lastHit)){     //last hit was another operator
+            if (solution !== undefined) {
+                currentFunction = [solution];
+                setCalculatorDisplay(solution);
+            } else {
+                setCalculatorDisplay(currentFunction[0]);
+            }
+        } else if (isNaN(lastHit && lastHit !== '.')){     //last hit was another operator
             setCalculatorDisplay(currentFunction[0]);
             currentFunction.pop();
             
@@ -146,10 +167,10 @@ function callOperator(button) {
         if (lastHit == undefined) {  //first hit is an operator
             currentFunction.push(currentDisplay);
             currentFunction.push(button);
-            setCalculatorDisplay(0);
+            setCalculatorDisplay(currentFunction[0]);
         } else if (isNaN(lastHit) && isNaN(lastElement)) {     //if lastHit and lastElement are operators 
             currentFunction.splice(currentFunction.length - 1, 1, button);
-        } else if (isNaN(lastHit) && !isNaN(lastElement)) {    // if lastHit was an operator and lastElement is a number
+        } else if (((isNaN(lastHit)) && !isNaN(lastElement))) {    // if lastHit was an operator and lastElement is a number
             currentFunction.push(button);
             //setCalculatorDisplay(currentFunction[0]);
         }
@@ -163,7 +184,7 @@ function callOperator(button) {
         }
         setCalculatorDisplay(currentFunction[0]);
     }
-    console.log(currentFunction);
+
     
     if (currentFunction.length >= 3) {
         solveIt();
